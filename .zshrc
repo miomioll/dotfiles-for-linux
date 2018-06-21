@@ -1,78 +1,46 @@
-# Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
-# Vi ライクな操作が好みであれば `bindkey -v` とする
-bindkey -v
+autoload -U compinit promptinit
+compinit
+promptinit
 
-# 自動補完を有効にする
-# コマンドの引数やパス名を途中まで入力して <Tab> を押すといい感じに補完してくれる
-# 例： `cd path/to/<Tab>`, `ls -<Tab>`
-autoload -U compinit; compinit
+export LANG=ja_JP.UTF-8
 
-# 入力したコマンドが存在せず、かつディレクトリ名と一致するなら、ディレクトリに cd する
-# 例： /usr/bin と入力すると /usr/bin ディレクトリに移動
-setopt auto_cd
+autoload -Uz colors
+colors
 
-# ↑を設定すると、 .. とだけ入力したら1つ上のディレクトリに移動できるので……
-# 2つ上、3つ上にも移動できるようにする
-alias ...='cd ../..'
-alias ....='cd ../../..'
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+LISTMAX=10000
 
-# "~hoge" が特定のパス名に展開されるようにする（ブックマークのようなもの）
-# 例： cd ~hoge と入力すると /long/path/to/hogehoge ディレクトリに移動
-hash -d hoge=/long/path/to/hogehoge
+# setopt
+setopt hist_ignore_dups
+setopt nonomatch
 
-# cd した先のディレクトリをディレクトリスタックに追加する
-# ディレクトリスタックとは今までに行ったディレクトリの履歴のこと
-# `cd +<Tab>` でディレクトリの履歴が表示され、そこに移動できる
-setopt auto_pushd
+# zstyle
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# pushd したとき、ディレクトリがすでにスタックに含まれていればスタックに追加しない
-setopt pushd_ignore_dups
+# aliase
+alias ls='ls -v -F --color=auto'
+alias ll='ls -al'
+alias la='ls -A'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias open='xdg-open'
+alias emacs='emacs -nw'
+alias guvpn='sudo openconnect -u t160d006 --juniper https://vpn.gunma-u.ac.jp'
 
-# 拡張 glob を有効にする
-# glob とはパス名にマッチするワイルドカードパターンのこと
-# （たとえば `mv hoge.* ~/dir` における "*"）
-# 拡張 glob を有効にすると # ~ ^ もパターンとして扱われる
-# どういう意味を持つかは `man zshexpn` の FILENAME GENERATION を参照
-setopt extended_glob
-
-# 入力したコマンドがすでにコマンド履歴に含まれる場合、履歴から古いほうのコマンドを削除する
-# コマンド履歴とは今まで入力したコマンドの一覧のことで、上下キーでたどれる
-setopt hist_ignore_all_dups
-
-# コマンドがスペースで始まる場合、コマンド履歴に追加しない
-# 例： <Space>echo hello と入力
-setopt hist_ignore_space
-
-# <Tab> でパス名の補完候補を表示したあと、
-# 続けて <Tab> を押すと候補からパス名を選択できるようになる
-# 候補を選ぶには <Tab> か Ctrl-N,B,F,P
-zstyle ':completion:*:default' menu select=1
-
-# 単語の一部として扱われる文字のセットを指定する
-# ここではデフォルトのセットから / を抜いたものとする
-# こうすると、 Ctrl-W でカーソル前の1単語を削除したとき、 / までで削除が止まる
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-
-# 色設定
-autoload -U colors; colors
-
-# もしかして機能
-setopt correct
-
-# PCRE 互換の正規表現を使う
-setopt re_match_pcre
-
-# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+# vcs_info
+RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
+autoload -Uz vcs_info
 setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-# プロンプト指定
-PROMPT="
-[%n@%m] %{${fg[yellow]}%}%~%{${reset_color}%}
-%(?.%{$fg[green]%}.%{$fg[blue]%})%(?!(*'-') <!(*;-;%)? <)%{${reset_color}%} "
-
-# プロンプト指定(コマンドの続き)
-PROMPT2='[%n]> '
-
-# もしかして時のプロンプト指定
-SPROMPT="%{$fg[red]%}%{$suggest%}(*'~'%)? < もしかして %B%r%b %{$fg[red]%}かな? [そう!(y), 違う!(n),a,e]:${reset_color} "
+# zsh-syntax-hilighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
