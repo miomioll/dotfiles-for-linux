@@ -15,6 +15,9 @@ LISTMAX=10000
 # setopt
 setopt hist_ignore_dups
 setopt nonomatch
+setopt correct
+setopt re_match_pcre
+setopt prompt_subst
 
 # zstyle
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -28,7 +31,12 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias open='xdg-open'
 alias emacs='emacs -nw'
-alias guvpn='sudo openconnect -u t160d006 --juniper https://vpn.gunma-u.ac.jp'
+
+# prompt
+PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%}
+%(?.%{$fg[green]%}.%{$fg[blue]%})%(?!(*'-') <!(*;-;%)? <)%{${reset_color}%} "
+PROMPT2='[%n]> '
+SPROMPT="%{$fg[red]%}%{$suggest%}(*'~'%)? < もしかして %B%r%b %{$fg[red]%}かな? [そう!(y), 違う!(n),a,e]:${reset_color} "
 
 # vcs_info
 RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
@@ -42,5 +50,11 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
+# stack
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+eval "$(stack --bash-completion-script stack)"
+
 # zsh-syntax-hilighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # ArchLinux
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Ubuntu 
