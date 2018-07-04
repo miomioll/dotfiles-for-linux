@@ -1,0 +1,31 @@
+{
+    "editor.fontFamily": "'Cica'",
+    "editor.wordWrap": "on",
+    "workbench.startupEditor": "none",
+    "latex-workshop.latex.tools": [
+        {
+          "name": "latexmk",
+          "command": "latexmk",
+          "args": [
+            "-e",
+            "$latex=q/platex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/",
+            "-e",
+            "$bibtex=q/pbibtex %O %B/",
+            "-e",
+            "$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/",
+            "-e",
+            "$dvipdf=q/dvipdfmx %O -o %D %S/",
+            "-e",
+            "$makeindex=q/mendex %O -o %D %S/",
+            "-norc",
+            "-pdfdvi",
+            "%DOC%"
+          ]
+        }
+    ],
+    "latex-workshop.message.update.show": false,
+    "editor.tabSize": 2,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "workbench.colorTheme": "Monokai",
+    "workbench.iconTheme": "vscode-icons"
+  }

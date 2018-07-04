@@ -19,8 +19,14 @@ setopt correct
 setopt re_match_pcre
 setopt prompt_subst
 
+# disable
+disable r
+
 # zstyle
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# path
+export PATH=${HOME}/usr/bin:$PATH
 
 # aliase
 alias ls='ls -v -F --color=auto'
@@ -31,6 +37,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias open='xdg-open'
 alias emacs='emacs -nw'
+alias r='R'
 
 # prompt
 PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%}
@@ -55,6 +62,8 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 eval "$(stack --bash-completion-script stack)"
 
+# termite
+source /etc/profile.d/vte.sh
+
 # zsh-syntax-hilighting
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # ArchLinux
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Ubuntu 
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
