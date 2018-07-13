@@ -29,7 +29,7 @@ neovim: ## Init neovim
 	# bash ${HOME}/.config/nvim/installer.sh ${HOME}/.config/nvim
 
 vscode: ## Init visual-studio-code
-	# yay -S visual-studio-code-bin
+	yay -S visual-studio-code-bin
 	ln -vsf ${PWD}/.config/Code/User/settings.json ${HOME}/.config/Code/User/settings.json
 	code --install-extension $(cat ${PWD}/vscode/extension)
 

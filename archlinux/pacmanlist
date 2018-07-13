@@ -1,3 +1,5 @@
+acpi_call
+acpid
 arc-gtk-theme
 archlinux-wallpaper
 autoconf
@@ -42,10 +44,12 @@ gnome-control-center
 gnome-disk-utility
 gnome-keyring
 gnome-screenshot
+gnome-shell-extensions
 grep
 groff
 grub
 gthumb
+gufw
 gzip
 htop
 inetutils
@@ -65,6 +69,7 @@ m4
 make
 man-db
 man-pages
+mariadb
 mdadm
 nano
 nautilus
@@ -88,7 +93,9 @@ procps-ng
 psmisc
 python2-pip
 python2-pyinotify
+r
 reiserfsprogs
+ruby
 rxvt-unicode
 s-nail
 sed
@@ -114,7 +121,11 @@ texlive-pictures
 texlive-pstricks
 texlive-publishers
 texlive-science
+tig
+tlp
 tmux
+tp_smapi
+ufw
 urxvt-perls
 usbutils
 util-linux
