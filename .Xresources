@@ -22,10 +22,10 @@ URxvt.lineSpace:            0
 URxvt.letterSpace:  	    0
 
 !! Font
-URxvt.font:              xft:Cica:pixelsize=15:antialiase=true
-URxvt.boldFont:          xft:Cica:bold:pixelsize=15:antialiase=true
-URxvt.italicFont:        xft:Cica:italic:pixelsize=15:antialiase=true
-URxvt.bolditalicFont:    xft:Cica:bold:italic:pixelsize=15:antialiase=true
+URxvt.font:              xft:Cica:pixelsize=13:antialiase=true
+URxvt.boldFont:          xft:Cica:bold:pixelsize=13:antialiase=true
+URxvt.italicFont:        xft:Cica:italic:pixelsize=13:antialiase=true
+URxvt.bolditalicFont:    xft:Cica:bold:italic:pixelsize=13:antialiase=true
 
 !! Color Scheme
 URxvt.color0:               #1C1D19
@@ -70,8 +70,8 @@ XTerm*cjkWidth:		   true
 XTerm*saveLines:	   2048
 XTerm*lineSpace:           0
 XTerm*letter_space:	   0
-xterm*faceName: 	   Cica:size=14:style=Regular:antialias=true
-xterm*faceNameDoublesize:  Cica:size=14:style=Regular:antialias=true
+xterm*faceName: 	   Cica:size=12:style=Regular:antialias=true
+xterm*faceNameDoublesize:  Cica:size=12:style=Regular:antialias=true
 xterm*faceSize: 	   14
 xterm*borderWidth: 	   0
 

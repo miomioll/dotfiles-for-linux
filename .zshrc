@@ -27,6 +27,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # path
 export PATH=${HOME}/usr/bin:$PATH
+export PATH=${HOME}/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+export PATH=${HOME}/.gem/ruby/2.5.0/bin:$PATH
 
 # aliase
 alias ls='ls -v -F --color=auto'
@@ -38,6 +41,7 @@ alias rm='rm -i'
 alias open='xdg-open'
 alias emacs='emacs -nw'
 alias r='R'
+alias free='free -h --si'
 
 # prompt
 PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%}
