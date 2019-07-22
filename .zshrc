@@ -27,9 +27,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # path
 export PATH=${HOME}/usr/bin:$PATH
-export PATH=${HOME}/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-export PATH=${HOME}/.gem/ruby/2.5.0/bin:$PATH
+export PATH=${HOME}/.local/bin:$PATH
 
 # aliase
 alias ls='ls -v -F --color=auto'
@@ -61,13 +59,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-# stack
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-eval "$(stack --bash-completion-script stack)"
-
-# termite
-source /etc/profile.d/vte.sh
-
-# zsh-syntax-hilighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Zsh plugin
+source ${HOME}/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/src/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(${HOME}/src/github.com/zsh-users/zsh-completions $fpath)
